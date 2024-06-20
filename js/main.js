@@ -21,6 +21,7 @@ $start.addEventListener("click", () => {
     $start.classList.add("hidden-btn");
     $reset.classList.remove("hidden-btn");
     $board.classList.remove("game-preparing", "game-over");
+    $singlePlayerDiv.classList.add("single-player-setted");
 
     if (gameStopped) {
         resetGame();
