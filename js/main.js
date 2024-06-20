@@ -75,11 +75,9 @@ function addTile(miniCellObj) {
 
     checkWinner(miniCellObj.indexCell);
 
-    if (whoseTurn === "O" && !singlePlayer && !aiTurn) {
+    if (whoseTurn === "O" && !singlePlayer) {
         $board.classList.add("ai-turn");
-
         let randomIndex = generateRandomIndex(miniCellObj);
-        console.log(miniCellObj.tileNumber * 9);
 
         while (miniCellsObjectArray[randomIndex].isClicked) {
             randomIndex = generateRandomIndex(miniCellObj);
