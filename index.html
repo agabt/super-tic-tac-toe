@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/mainBoard.css">
+    <link rel="stylesheet" href="css/miniBoard.css">
+    <script src="js/generateMiniBoards.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/resetGame.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="game-controls">
+            <button id="reset">Reiniciar</button>
+        </div>
+
+        <div id="board">
+            <div class="row">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+            </div>
+
+            <div class="row">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+            </div>
+
+            <div class="row">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+            </div>
+        </div>
+
+        <div id="game-info">
+            <p class="p-game-info">Es el turno de:<span id="whose-turn" class="tile big X">X</span></p>
+        </div>
+    </div>
+</body>
+
+</html>
