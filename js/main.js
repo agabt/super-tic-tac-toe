@@ -1,14 +1,35 @@
 let $miniCellsArray = document.querySelectorAll(".mini-cell");
-const miniCellsObjectArray = [];
 const $whoseTurn = document.querySelector("#whose-turn");
 const $board = document.querySelector("#board");
+const $singlePlayer = document.querySelector("#single-player");
+const $singlePlayerDiv = document.querySelector("#single-player-div");
+const $start = document.querySelector("#start");
+let gameStopped = false;
 
+const miniCellsObjectArray = [];
+let aiTurn = null;
+let singlePlayer = false;
 let whoseTurn = "X";
-
 let indexCell = 0;
 let tileNumber = 0;
 
-setupMiniCells();
+$singlePlayer.addEventListener("click", () => {
+    singlePlayer = !singlePlayer;
+});
+
+$start.addEventListener("click", () => {
+    $start.classList.add("hidden-btn");
+    $reset.classList.remove("hidden-btn");
+    $board.classList.remove("game-preparing", "game-over");
+
+    if (gameStopped) {
+        resetGame();
+        gameStopped = false;
+        return;
+    }
+
+    setupMiniCells();
+});
 
 function setupMiniCells() {
     $miniCellsArray.forEach($miniCell => {
@@ -35,6 +56,8 @@ function setupMiniCells() {
 }
 
 function addTile(miniCellObj) {
+    $singlePlayerDiv.classList.add("single-player-setted");
+
     $pTile = document.createElement("p");
     $pTile.textContent = whoseTurn;
     $pTile.classList.add("tile", whoseTurn);
@@ -50,6 +73,26 @@ function addTile(miniCellObj) {
     $whoseTurn.classList.toggle("O");
 
     checkWinner(miniCellObj.indexCell);
+
+    if (whoseTurn === "O" && !singlePlayer && !aiTurn) {
+        $board.classList.add("ai-turn");
+
+        let randomIndex = generateRandomIndex(miniCellObj);
+        console.log(miniCellObj.tileNumber * 9);
+
+        while (miniCellsObjectArray[randomIndex].isClicked) {
+            randomIndex = generateRandomIndex(miniCellObj);
+        }
+
+        aiTurn = setTimeout(() => {
+            addTile(miniCellsObjectArray[randomIndex]);
+            $board.classList.remove("ai-turn");
+        }, 1000);
+    }
+}
+
+function generateRandomIndex(miniCellObj) {
+    return Math.floor((Math.random() * 9) + (miniCellObj.tileNumber * 9));
 }
 
 function addPlayStateToMiniBoards(miniCellObj) {
@@ -158,8 +201,8 @@ function checkWinnerBigBoard() {
             $cellsArray[a].textContent === $cellsArray[c].textContent &&
             $cellsArray[a].textContent !== ""
         ) {
-            $board.classList.add("game-over")
             alert(`¡${$cellsArray[a].textContent} ha ganado!`);
+            stopGame();
         }
     });
 }

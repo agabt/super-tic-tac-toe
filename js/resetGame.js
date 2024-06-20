@@ -21,6 +21,7 @@ function resetGame() {
     generateMiniBoards();
     resetVariables();
     setupMiniCells();
+    $singlePlayerDiv.classList.add("single-player-setted");
 }
 
 function resetVariables() {
@@ -30,4 +31,9 @@ function resetVariables() {
 
     miniCellsObjectArray.splice(0, miniCellsObjectArray.length);
     $miniCellsArray = document.querySelectorAll(".mini-cell");
+
+    $board.classList.remove("ai-turn");
+    $board.classList.remove("game-over");
+    clearTimeout(aiTurn);
+    aiTurn = null;
 }
