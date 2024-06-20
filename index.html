@@ -7,18 +7,26 @@
     <title>Super Tic Tac Toe</title>
     <link rel="stylesheet" href="css/mainBoard.css">
     <link rel="stylesheet" href="css/miniBoard.css">
+    <link rel="stylesheet" href="css/gameControls.css">
     <script src="js/generateMiniBoards.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/resetGame.js" defer></script>
+    <script src="js/stopGame.js" defer></script>
 </head>
 
 <body>
     <div class="container">
         <div id="game-controls">
-            <button id="reset">Reiniciar</button>
+            <button class="btn" id="start">Iniciar</button>
+            <button class="btn hidden-btn" id="reset">Reiniciar</button>
+            <button class="btn" id="stop">Parar</button>
+            <div id="single-player-div">
+                <label for="single-player" class="standard-text">IA: </label>
+                <input type="checkbox" id="single-player" checked>
+            </div>
         </div>
 
-        <div id="board">
+        <div id="board" class="game-preparing">
             <div class="row">
                 <div class="cell"></div>
                 <div class="cell"></div>
@@ -39,7 +47,7 @@
         </div>
 
         <div id="game-info">
-            <p class="p-game-info">Es el turno de:<span id="whose-turn" class="tile big X">X</span></p>
+            <p class="standard-text">Es el turno de:<span id="whose-turn" class="tile big X">X</span></p>
         </div>
     </div>
 </body>
