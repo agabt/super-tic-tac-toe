@@ -12,14 +12,15 @@
     <script src="js/main.js" defer></script>
     <script src="js/resetGame.js" defer></script>
     <script src="js/stopGame.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
     <div class="container">
         <div id="game-controls">
-            <button class="btn" id="start">Iniciar</button>
-            <button class="btn hidden-btn" id="reset">Reiniciar</button>
-            <button class="btn" id="stop">Parar</button>
+            <button class="btn" id="start"><i class="bi bi-play-fill"></i></button>
+            <button class="btn hidden-btn" id="reset"><i class="bi bi-arrow-clockwise"></i></button>
+            <button class="btn" id="stop"><i class="bi bi-pause-circle-fill"></i></button>
             <div id="single-player-div">
                 <label for="single-player" class="standard-text">IA: </label>
                 <input type="checkbox" id="single-player" checked>
